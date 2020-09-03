@@ -1,13 +1,23 @@
-var objects = [], btn_press = false;
-window.addEventListener('load',randomize);
+var objects = [], btn_press = false, type = -1, speed = 50, size = 50;
+window.addEventListener('load',()=>{
+    randomize();
+});
 
-async function sort(type){
+function select(t){
+    if(type!=-1){
+        document.querySelector("#btn-"+type).style.backgroundColor="";
+    }
+    document.querySelector("#btn-"+t).style.backgroundColor="#dc3545";
+    type = t;
+}
+async function sort(){
     if(btn_press){
         alert("Awesome sorting in progress. Please wait and observe"); 
         return;
     }
     btn_press = true;
     switch(type){
+        case -1: alert("Please select a sort type"); break;
         case 0 : await bubbleSort(); break;
         case 1 : await insertionSort(); break;
         case 2 : await mergeSort(); break;
@@ -19,21 +29,36 @@ async function sort(type){
     btn_press = false;
 }
 
-async function randomize(){
+function speedToggle(value){
+    speed = value;
+}
 
+function frequencyToggle(value){
+    size = value;
+    randomize();
+}
+
+async function randomize(){
+    if(btn_press){
+        alert("Awesome sorting in progress. Please wait and observe"); 
+        return;
+    }
     var arr = [];
     objects = [];
     var area = document.querySelector("#bars");
+    let h = area.style.height;
+    console.log(h);
+    h = parseInt(h.slice(0,h.length-2) - 50);
     area.innerHTML = "";
-    for(var i = 0; i < 10; i++)
-        arr.push(Math.floor(Math.random()*100 + 1));
+    for(var i = 0; i < size; i++)
+        arr.push(Math.floor(Math.random()*h + 1));
 
     
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < size; i++){
         var bar = document.createElement("div");
         bar.className = "bar";
         var attr = document.createAttribute("style");
-        attr.value = "height: "+arr[i]*3+"px; background: white;";
+        attr.value = "height: "+arr[i]+"px; background-color: white;";
         bar.setAttributeNode(attr);
         area.appendChild(bar);
         objects.push(bar);

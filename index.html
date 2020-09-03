@@ -9,19 +9,47 @@
     <script src="./Utils.js"></script>
     <script src="./ctrl.js"></script>
     
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./style.css">
+    
     <title>Document</title>
 </head>
-<body>
-    <div id = "bars" style = "height:100vh; width:100vh; background:black; display: flex; justify-content: space-around; align-items: center;">
+<body style = "background: #02020f">
+<div class="d-flex flex-column justify-content-around" style="width:100vw; height:100vh;">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column justify-content-around mt-auto mode">
+            <button id ="btn-0" class = "btn btn-primary selection" onclick="select(0)">Bubble Sort</button>
+            <button id ="btn-1" class = "btn btn-primary selection" onclick="select(1)">Insertion Sort</button>
+            <button id ="btn-2" class = "btn btn-primary selection" onclick="select(2)">Merge Sort</button>
+            <button id ="btn-3" class = "btn btn-primary selection" onclick="select(3)">Selection Sort</button>
+            <button id ="btn-4" class = "btn btn-primary selection" onclick="select(4)">Quick Sort</button>
+            <button id ="btn-5" class = "btn btn-primary selection" onclick="select(5)">Heap Sort</button>
+            
+        </div>
+        <div id = "bars" class="bar-div mr-1 mt-1" style = "background-color: #000000; display: flex; justify-content: space-around; align-items: center; width:85%; height: 600px">
+        
+        </div>
         
     </div>
-    <button onclick="sort(0)">bubble sort</button>
-    <button onclick="sort(1)">insertion sort</button>
-    <button onclick="sort(2)">Merge Sort</button>
-    <button onclick="sort(3)">Selection Sort</button>
-    <button onclick="sort(4)">Quick Sort</button>
-    <button onclick="sort(5)">Heap Sort</button>
-    <button onclick="sort(6)">Randomize</button>
+    <div class="d-flex mb-2 justify-content-center">
+        <div class="w-75 d-flex justify-content-around">
+            <div class="w-25 d-flex flex-column justify-content-center align-items-center" style="color:white">
+                <input id="speed" type="range" oninput="speedToggle(this.value)"  min="1" max="100" value="50" style="width:200px;"/>
+                <label>Speed</label>
+            </div>
+            <div class="w-25 d-flex flex-column justify-content-center align-items-center" style="color:white">
+                <input type="range"  min="1" max="100" value="50" oninput="frequencyToggle(this.value)" id="frequency" style="width:200px;"/>
+                <label>Frequency</label>
+            </div>
+            <div>
+                <button class = "btn btn-outline-info button" onclick="randomize()">Randomize</button>
+                <button class="btn btn-outline-success button" onclick="sort()"style="width: 100px">Start</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 </html>

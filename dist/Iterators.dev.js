@@ -6,7 +6,7 @@ var iterator = {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (i >= 0 && i < objects.length) objects[i].style.background = iterator_colors[color];
+            if (i >= 0 && i < objects.length) objects[i].style.backgroundColor = iterator_colors[color];
 
           case 1:
           case "end":
@@ -20,7 +20,7 @@ var iterator = {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            if (i >= 0 && i < objects.length) objects[i].style.background = "white";
+            if (i >= 0 && i < objects.length) objects[i].style.backgroundColor = "white";
 
           case 1:
           case "end":
@@ -49,7 +49,7 @@ var iterator = {
             }
 
             obj = _step.value;
-            obj.style.background = iterator_colors[0];
+            obj.style.backgroundColor = iterator_colors[0];
             _context3.next = 10;
             return regeneratorRuntime.awrap(sleep(50));
 
@@ -106,7 +106,7 @@ var iterator = {
             }
 
             _obj = _step2.value;
-            _obj.style.background = "white";
+            _obj.style.backgroundColor = "white";
             _context3.next = 37;
             return regeneratorRuntime.awrap(sleep(50));
 
@@ -157,4 +157,4 @@ var iterator = {
     }, null, null, [[3, 15, 19, 27], [20,, 22, 26], [30, 42, 46, 54], [47,, 49, 53]]);
   }
 };
-var iterator_colors = ["blue", "red", "green"];
+var iterator_colors = ["blue", "#dc3545", "#28a745"];

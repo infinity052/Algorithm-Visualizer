@@ -6,13 +6,13 @@ async function bubbleSort(){
         
         for(; j < n - i - 1; j++){
             await iterator.addIterator(j,0);
-            await sleep(100);
+            await sleep(5);
             if(await height(j) > await height(j+1)){
                 await swap(j,j+1);
                 isSorted = false;
-                await sleep(100);
+                await sleep(5);
             }
-            await sleep(50);
+            await sleep(5);
             await iterator.removeIterator(j);
 
         }

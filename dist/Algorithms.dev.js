@@ -27,7 +27,7 @@ function bubbleSort() {
 
         case 6:
           _context.next = 8;
-          return regeneratorRuntime.awrap(sleep(100));
+          return regeneratorRuntime.awrap(sleep(5));
 
         case 8:
           _context.next = 10;
@@ -52,11 +52,11 @@ function bubbleSort() {
         case 17:
           isSorted = false;
           _context.next = 20;
-          return regeneratorRuntime.awrap(sleep(100));
+          return regeneratorRuntime.awrap(sleep(5));
 
         case 20:
           _context.next = 22;
-          return regeneratorRuntime.awrap(sleep(50));
+          return regeneratorRuntime.awrap(sleep(5));
 
         case 22:
           _context.next = 24;
