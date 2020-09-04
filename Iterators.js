@@ -7,14 +7,14 @@ var iterator = {
             if(i>=0 && i<objects.length)
                 objects[i].style.backgroundColor = "white";
         },
-        sortingEnd : async function(){
+        sortingEnd : async function(curr_speed){
             for(let obj of objects){
                 obj.style.backgroundColor = iterator_colors[0];
-                await sleep(120-speed);
+                await sleep(curr_speed);
             }
             for(let obj of objects){
                 obj.style.backgroundColor = "white";
-                await sleep(120-speed);
+                await sleep(curr_speed);
             }
         }
 };

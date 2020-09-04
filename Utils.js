@@ -20,5 +20,5 @@ async function assign(src,dest,assign_to){
 }
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, parseFloat(ms)));
 }

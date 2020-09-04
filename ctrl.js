@@ -33,9 +33,10 @@ function speedToggle(value){
     speed = value;
 }
 
-function frequencyToggle(value){
+async function frequencyToggle(value){
+    
     size = value;
-    randomize();
+    await randomize();
 }
 
 async function randomize(){
@@ -43,11 +44,11 @@ async function randomize(){
         alert("Awesome sorting in progress. Please wait and observe"); 
         return;
     }
+    btn_press = true;
     var arr = [];
     objects = [];
     var area = document.querySelector("#bars");
     let h = area.style.height;
-    console.log(h);
     h = parseInt(h.slice(0,h.length-2) - 50);
     area.innerHTML = "";
     for(var i = 0; i < size; i++)
@@ -63,6 +64,6 @@ async function randomize(){
         area.appendChild(bar);
         objects.push(bar);
     }
-
+    btn_press = false;
 }
 
