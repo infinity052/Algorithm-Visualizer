@@ -3,53 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./Iterators.js"></script>
-    <script src="./Algorithms.js"></script>
-    <script src="./Utils.js"></script>
-    <script src="./ctrl.js"></script>
-    
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./style.css">
-    
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>   
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, parseFloat(ms)));
+    }
+    var algo = -1, type = -1;
+    </script>
+    <script src="./js/Sorting/Sound.js"></script>
+    <script type="module">
+        import {select,setAlgo} from './js/app.js';
+        import {speedToggle,frequencyToggle,mute_unmute,randomize,sort,goBackFromSort} from './js/Sorting/Sort.js';
+        import {createCells,graph_start,goBackFromGraph} from './js/Graphs/Graph.js';
+
+        window.addEventListener('load',()=>{
+            for(let i = 0; i<=9; i++){
+                $('#btn-'+i).click(()=>{select(i)});
+            }
+            $('#graph-btn').click(()=>{setAlgo(1)});
+            $('#sort-btn').click(()=>{setAlgo(0)});
+            $('#back1').click(()=>{goBackFromSort()});
+            $('#back2').click(()=>{goBackFromGraph()});
+            $('#speed').on('input',(e)=>{speedToggle(e.target.value)});
+            $('#frequency').on('input',(e)=>{frequencyToggle(e.target.value)});
+            $('#mute').click(()=>{mute_unmute()});
+            $('#randomize').click(()=>{randomize()});
+            $('#sort').click(()=>{sort()});
+            $('#reset').click(()=>{createCells()});
+            $('#find_path').click(()=>{graph_start()});
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body style = "background: #02020f">
-<div class="d-flex flex-column justify-content-around" style="width:100vw; height:100vh;">
-    <div class="d-flex justify-content-between">
-        <div class="d-flex flex-column justify-content-around mt-auto mode">
-            <button id ="btn-0" class = "btn btn-primary selection" onclick="select(0)">Bubble Sort</button>
-            <button id ="btn-1" class = "btn btn-primary selection" onclick="select(1)">Insertion Sort</button>
-            <button id ="btn-2" class = "btn btn-primary selection" onclick="select(2)">Merge Sort</button>
-            <button id ="btn-3" class = "btn btn-primary selection" onclick="select(3)">Selection Sort</button>
-            <button id ="btn-4" class = "btn btn-primary selection" onclick="select(4)">Quick Sort</button>
-            <button id ="btn-5" class = "btn btn-primary selection" onclick="select(5)">Heap Sort</button>
+    
+    <div  style="width:100vw; height:100vh;">
+        <div style="height:80px; width:100%;"><label class="heading">Algorithm Visualizer</label></div>
+        <div class="main-container">
+            <div style="display: flex; align-items: center;">
+                <div id="sorting" class="mode" style="display:none;">
+                    <button id ="btn-0" class = "btn btn-primary selection"  >Bubble Sort</button>
+                    <button id ="btn-1" class = "btn btn-primary selection"  >Insertion Sort</button>
+                    <button id ="btn-2" class = "btn btn-primary selection"  >Merge Sort</button>
+                    <button id ="btn-3" class = "btn btn-primary selection"  >Selection Sort</button>
+                    <button id ="btn-4" class = "btn btn-primary selection"  >Quick Sort</button>
+                    <button id ="btn-5" class = "btn btn-primary selection"  >Heap Sort</button>
+                    <button id="back1" class = "btn btn-primary selection" >Back</button>
+                    
+                </div>
+                <div id="graph" class="mode" style="display:none;">
+                    <button id ="btn-6" title="A* Path Finding Algorithm is used to find the single source shortest path in a weighted graph by calculating the heuristic and the distance from source of each node and choosing the most optimal route accordingly." class = "btn btn-primary selection" style="height: 70px">A* Path Finding Algorithm</button>
+                    <button id ="btn-7" title="Dijikstra's Algorithm is used to find the single source shortest path in a weighted graph." class = "btn btn-primary selection" style="height: 70px">Dijkstra's Algorithm</button>
+                    <button id ="btn-8" title="Depth First Search is a traversal algorithm that explores each node as deep as possible before backtracking." class = "btn btn-primary selection" style="height: 70px" >Depth First Search Algorithm</button>
+                    <button id ="btn-9" title="Breadth First Search is a traversal algorithm that is used to find single source shortest path in an unweighted graph by exploring all the children of the current node first." class = "btn btn-primary selection" style="height: 70px">Breadth First Search Algorithm</button>
+                    <button id="back2" class = "btn btn-primary selection" >Back</button>
+                </div>
+                <div class="mode" id="stage1">
+                    <button id="graph-btn" class = "btn btn-primary selection" >Graph Algorithms</button>
+                    <button id="sort-btn" class = "btn btn-primary selection" >Sorting Algorithms</button>
+                </div>
+            </div>
+            
+            <div id = "bars" class="board" style="display: flex;justify-content: space-around;align-items: center;"></div>
+            <table id="table" class="board" style="display:none; background-color: white" ondragstart="return false;" ondrop="return false;"></table>
             
         </div>
-        <div id = "bars" class="bar-div mr-1 mt-1" style = "background-color: #000000; display: flex; justify-content: space-around; align-items: center; width:85%; height: 600px">
-        
+        <div id="options">
+            <div id="sort_options" style="display: none !important;">
+                <div class="sliders">
+                    <input id="speed" type="range"   min="1" max="100" value="50" style="width:200px;"/>
+                    <label>Speed</label>
+                </div>
+                <div class="sliders">
+                    <input type="range"  min="1" max="100" value="50"  id="frequency" style="width:200px;"/>
+                    <label>Frequency</label>
+                </div>
+                <div>
+                    <button id="mute" class = "btn btn-outline-danger button mr-1" >Mute</button>
+                    <button id="randomize" class = "btn btn-outline-info button mr-1" >Randomize</button>
+                    <button id="sort" class="btn btn-outline-success button mr-1" style="width: 100px">Start</button>
+                </div>
+            </div>
+            <div id="graph_options" class="d-flex w-100 justify-content-end mr-4" style="display:none !important;">
+                <button id="reset" class = "btn btn-outline-danger button mr-2" style="width: 100px" >Reset</button>
+                <button id="find_path" class = "btn btn-outline-success button" style="width: 100px" >Start</button>
+            </div>
         </div>
-        
     </div>
-    <div class="d-flex mb-2 justify-content-center">
-        <div class="w-75 d-flex justify-content-around">
-            <div class="w-25 d-flex flex-column justify-content-center align-items-center" style="color:white">
-                <input id="speed" type="range" oninput="speedToggle(this.value)"  min="1" max="100" value="50" style="width:200px;"/>
-                <label>Speed</label>
-            </div>
-            <div class="w-25 d-flex flex-column justify-content-center align-items-center" style="color:white">
-                <input type="range"  min="1" max="100" value="50" oninput="frequencyToggle(this.value)" id="frequency" style="width:200px;"/>
-                <label>Frequency</label>
-            </div>
-            <div>
-                <button class = "btn btn-outline-info button" onclick="randomize()">Randomize</button>
-                <button class="btn btn-outline-success button" onclick="sort()"style="width: 100px">Start</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
+    
+    
+    
 </body>
 </html>
