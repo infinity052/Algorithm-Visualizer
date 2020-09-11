@@ -11,4 +11,6 @@ Iterator.js module contains all the code related to adding and removing the colo
 
 Sound.js has the code for playing a sound of specified frequency for 20ms which is called in Algorithms.js for producing sound for every iteration.
 
+The app does not require any building, just run it on a live server using your ide. In vs code specifically, install the Live Server extension, and then go to the index.html file, right-click and select Open with live server
+
 The app is hosted at - https://infinity052.github.io/Algorithm-Visualizer/
